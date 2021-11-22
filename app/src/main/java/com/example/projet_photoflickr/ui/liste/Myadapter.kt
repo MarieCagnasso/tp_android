@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.ImageView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.projet_photoflickr.R
@@ -41,6 +42,9 @@ class MyAdapter (val photos : List<Photo>,val callback: (kotlin.Int) -> kotlin.U
 
         Glide.with(holder.v.context).load(url).into(imageView);
 
-
+        imageView.setOnClickListener{
+            val action = ListFragmentDirections.actionListFragmentToFullFragment(url)
+            Navigation.findNavController(holder.v).navigate(action)
+        }
     }
 }

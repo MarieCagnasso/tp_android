@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import com.example.projet_photoflickr.R
 import com.bumptech.glide.Glide
 import com.example.projet_photoflickr.model.Photo
+import com.example.projet_photoflickr.ui.liste.ListFragmentDirections
 
 class MainFragment : Fragment() {
 
@@ -35,19 +36,29 @@ class MainFragment : Fragment() {
         val btnnext = layout.findViewById<Button>(R.id.btnNext)
         val btlall = layout.findViewById<Button>(R.id.btnAll)
 
-        btnnext.setOnClickListener(View.OnClickListener {
-            viewModel.nextPhoto()
-        })
 
-        btlall.setOnClickListener(View.OnClickListener{
+
+        btnnext.setOnClickListener {
+            viewModel.nextPhoto()
+        }
+
+        btlall.setOnClickListener {
             Navigation.findNavController(btlall).navigate(R.id.versListeFragment);
-        })
+        }
 
         viewModel.photoLiveData.observe(requireActivity(), { photoLiveData ->
             val url = "https://farm" + photoLiveData.farm + ".staticflickr.com/" + photoLiveData.server + "/" + photoLiveData.id+"_"+photoLiveData.secret + ".jpg"
             titleView.text = photoLiveData.title
+
             Glide.with(layout).load(url).into(imageView);
+
+            imageView.setOnClickListener{
+                val action = MainFragmentDirections.actionMainFragmentToFullFragment(url)
+                Navigation.findNavController(imageView).navigate(action)
+            }
         })
+
+
 
 
 
