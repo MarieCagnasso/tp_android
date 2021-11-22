@@ -3,6 +3,7 @@ package com.example.projet_photoflickr.ui.liste
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.ImageView
@@ -15,7 +16,7 @@ import com.example.projet_photoflickr.model.Photo
 class MyAdapter (val photos : List<Photo>,val callback: (kotlin.Int) -> kotlin.Unit) : RecyclerView.Adapter<MyAdapter.MyViewHolder>(){
 
     // un ViewHolder permet de stocker la vue de chaque item de la liste
-    class MyViewHolder(val v: android.widget.GridLayout) : RecyclerView.ViewHolder(v)
+    class MyViewHolder(val v: FrameLayout) : RecyclerView.ViewHolder(v)
 
 
     // appelé quand le ViewHolder doit être créé (probablement parce que l'item devient visible)
@@ -23,7 +24,7 @@ class MyAdapter (val photos : List<Photo>,val callback: (kotlin.Int) -> kotlin.U
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAdapter.MyViewHolder {
         val layout =
             LayoutInflater.from(parent.context).inflate(R.layout.photo,parent,false)
-        val holder = MyViewHolder(layout as android.widget.GridLayout)
+        val holder = MyViewHolder(layout as FrameLayout)
         Log.v("debug", "my adaptater")
 
         return holder
