@@ -28,7 +28,7 @@ class MainViewModel : ViewModel() {
 
 
             }catch (e:Exception){
-                Log.v("test", "erreur")
+                Log.v("test", "erreur : " + e)
             }
         }
     }
